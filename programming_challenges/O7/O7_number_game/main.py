@@ -1,7 +1,7 @@
 import random
 
 
-def play_number_game(self):
+def play_number_game():
     guess = -1
     guesses = 0
     answer = random.randint(1,100)

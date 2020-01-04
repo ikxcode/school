@@ -1,40 +1,31 @@
 import sys
 
-digit_list = []
-squared_list = []
 
-
-number = input("Give me a number and I will check if it is a happy number or not: ")
-
-
-def split_number_into_digits(number):
-    check_for_sad_number(number)
-    check_for_happy_number(number)
-    number = str(number)
-    for digit in number:
+def split_number_into_digits(number_int):
+    check_for_sad_number(number_int)
+    check_for_happy_number(number_int)
+    number_str = str(number_int)
+    digit_list = []
+    for digit in number_str:
         digit = int(digit)
         digit_list.append(digit)
-    square_digits()
+    square_digits(digit_list)
 
 
-def square_digits():
+def square_digits(digit_list):
+    squared_list = []
     for digit in digit_list:
         squared_digit = digit * digit
         squared_list.append(squared_digit)
-    add_digits()
+    add_digits(squared_list)
 
 
-def add_digits():
+def add_digits(squared_list):
     added_digit = 0
     for digit in squared_list:
         added_digit = added_digit + digit
-    clear_lists()
+    # clear_lists()
     split_number_into_digits(str(added_digit))
-
-
-def clear_lists():
-    digit_list.clear()
-    squared_list.clear()
 
 
 def check_for_sad_number(added_digit):
@@ -49,4 +40,5 @@ def check_for_happy_number(added_digit):
         sys.exit()
 
 
+number = input("Give me a number and I will check if it is a happy number or not: ")
 split_number_into_digits(number)

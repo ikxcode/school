@@ -1,15 +1,42 @@
-import sys
 
 
-def split_number_into_digits(number_int):
-    check_for_sad_number(number_int)
-    check_for_happy_number(number_int)
-    number_str = str(number_int)
+def run_happy_numbers_problem():
+    is_recurring = False
+    is_happy = False
+    number = get_user_input()
+    number_str = number
+    while not is_recurring and not is_happy:
+        digit_list = split_number_into_digits(number_str)
+        squared_list = square_digits(digit_list)
+        sum_of_digits = sum_digits(squared_list)
+        number_str = str(sum_of_digits)
+        is_recurring = is_number_recurring(sum_of_digits)
+        is_happy = is_number_happy(sum_of_digits)
+
+    if is_recurring:
+        print("the number " + number + " is sad")
+    elif is_happy:
+        print("the number " + number + " is happy")
+
+
+def get_user_input():
+    while True:
+        try:
+            number = input("Give me a positive integer and I will check if it is happy or sad: ").strip()
+            if int(number) <= 0:
+                print("That is not a positive integer")
+            else:
+                return number
+        except Exception:
+            print("That is not a positive integer")
+
+
+def split_number_into_digits(number):
     digit_list = []
-    for digit in number_str:
-        digit = int(digit)
-        digit_list.append(digit)
-    square_digits(digit_list)
+    for digit in number:
+        digit_int = int(digit)
+        digit_list.append(digit_int)
+    return digit_list
 
 
 def square_digits(digit_list):
@@ -17,28 +44,22 @@ def square_digits(digit_list):
     for digit in digit_list:
         squared_digit = digit * digit
         squared_list.append(squared_digit)
-    add_digits(squared_list)
+    return squared_list
 
 
-def add_digits(squared_list):
-    added_digit = 0
+def sum_digits(squared_list):
+    sum = 0
     for digit in squared_list:
-        added_digit = added_digit + digit
-    # clear_lists()
-    split_number_into_digits(str(added_digit))
+        sum += digit
+    return sum
 
 
-def check_for_sad_number(added_digit):
-    if added_digit == "4":
-        print("The number " + str(number) + " is sad")
-        sys.exit()
+def is_number_recurring(number):
+    return number == 4
 
 
-def check_for_happy_number(added_digit):
-    if added_digit == "1":
-        print("The number " + str(number) + " is happy")
-        sys.exit()
+def is_number_happy(number):
+    return number == 1
 
 
-number = input("Give me a number and I will check if it is a happy number or not: ")
-split_number_into_digits(number)
+run_happy_numbers_problem()

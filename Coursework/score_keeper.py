@@ -37,5 +37,3 @@ class TopPlayers:
 
 def return_score(entry):
     return entry.player
-
-

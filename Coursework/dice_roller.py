@@ -16,22 +16,23 @@ class DiceRoller:
     @staticmethod
     def score(dice_1, dice_2, bonus_throw=0):
         score = dice_1 + dice_2
-        print(score)
         odd_or_even = score % 2
+        is_odd = odd_or_even == 1
 
-        if odd_or_even == 1:
+        print("You rolled a " + str(dice_1) + " and a " + str(dice_2)
+              + ", adding up to " + str(score) + " points")
+
+        if is_odd:
             print("You rolled an odd number! You lose 5 points!")
             score -= 5
-            print(score)
         else:
-            print("You rolled an even number! You win 10 points!")
+            print("You rolled an even number! You win 10 extra points!")
             score += 10
-            print(score)
             if dice_1 == dice_2:
                 print("You rolled a double!")
+                print("You rolled a " + str(bonus_throw))
                 print("You get " + str(bonus_throw) + " extra points!")
                 score += bonus_throw
-                print(score)
 
         if score < 0:
             score = 0

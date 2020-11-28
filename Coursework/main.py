@@ -3,7 +3,7 @@ from authenticator import prompt_for_password
 
 
 def main():
-    prompt_for_password()
+    #  prompt_for_password()
     play_game()
 
 

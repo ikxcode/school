@@ -1,7 +1,9 @@
 import score_keeper
 
 
-def write_score(player_name, winner_score):
+def write_score(winner_details):
+    player_name = winner_details[0]
+    winner_score = winner_details[1]
     high_scores = open("high_scores.txt", "a")
     high_scores.write(player_name + " " + str(winner_score) + " \n")
     high_scores.close()
